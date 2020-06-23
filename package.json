@@ -1,0 +1,13 @@
+{
+  "name": "sike-bot",
+  "version": "1.0.0",
+  "description": "A discord bot for fun",
+  "main": "index.js",
+  "repository": "https://github.com/SeanErvinson/sike-bot",
+  "author": "SeanErvinson",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "discord.js": "^12.2.0"
+  }
+}
