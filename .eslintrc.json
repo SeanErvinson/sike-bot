@@ -10,10 +10,7 @@
     "rules": {
         "brace-style": [
             "error",
-            "stroustrup",
-            {
-                "allowSingleLine": true
-            }
+            "1tbs"
         ],
         "comma-dangle": [
             "error",
