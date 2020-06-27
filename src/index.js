@@ -25,7 +25,7 @@ client.on('message', (message) => {
     if (!args.length && command.args) {
         let response = 'This command requires arguemnts to work.';
         if (command.usage) {
-            response += `\nTo use the command ${prefix}${command} ${command.usage}`;
+            response += `\nTo use the command ${prefix}${commandName} ${command.usage}`;
         }
         return message.channel.send(response);
     }
