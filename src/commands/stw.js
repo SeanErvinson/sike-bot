@@ -5,7 +5,13 @@ module.exports = {
     usage: '<value> <value> ... <value>',
     execute(message, args) {
         const prettyPrint = require('../utils/prettyprint');
+        const spin = require('../utils/spin');
+        const file = require('../utils/file');
+        const path = require('path');
+
+        const location = path.join(__dirname, '..', 'assets', 'wheel.json');
         const entryPeriod = 15;
+
         entries = args;
         let response = prettyPrint.format(entries);
 
@@ -15,28 +21,27 @@ module.exports = {
         );
 
         const filter = (m) => m.content.startsWith('!et');
+        const collector = message.channel.createMessageCollector(filter, { time: 15000 });
+        collector.on('collect', (m) => {
+            entry = m.content.split(/ +/);
+            message.channel.send(`\`${entry[1]}\` has been added`);
+        });
         message.channel
             .awaitMessages(filter, { time: entryPeriod * 1000, errors: ['time'] })
-            .then((collected) => console.log(collected))
+            .then((collected) => console.log(collected.first()))
             .catch((collected) => {
                 collected.forEach((command) => {
                     const entry = command.content.split(/ +/);
                     entries.push(entry[1]);
                 });
+                data = {
+                    entries: entries,
+                };
+                file.save(location, data);
                 randomNum = Math.floor(Math.random() * entries.length);
                 response = prettyPrint.format(entries);
                 message.channel.send(`Final entries\n${response}`);
-                message.channel.send('Spinning the wheel');
-                let count = 3;
-                const counter = setInterval(() => {
-                    if (count <= 0) {
-                        message.channel.send(`The wheel has spoken: ${entries[randomNum]}`);
-                        clearInterval(counter);
-                    } else {
-                        message.channel.send(`${count}`);
-                    }
-                    count--;
-                }, 1000);
+                spin.spin(message, entries);
             });
     },
 };
