@@ -13,9 +13,7 @@ module.exports = {
             fs.writeFileSync(location, JSON.stringify(data));
             message.channel.send('Wheel has been cleared.');
         } else {
-            message.channel.send(
-                'No active wheel. Enter an entry using the `!entry` command first.',
-            );
+            message.channel.send('No active wheel. Enter an entry using the `!entry` command first.');
         }
     },
 };

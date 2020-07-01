@@ -17,9 +17,7 @@ module.exports = {
             response += '\n```';
             message.channel.send(`Current entries\n${response}`);
         } else {
-            message.channel.send(
-                'No active wheel. Enter an entry using the `!entry` command first.',
-            );
+            message.channel.send('No active wheel. Enter an entry using the `!entry` command first.');
         }
     },
 };

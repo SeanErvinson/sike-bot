@@ -10,9 +10,7 @@ module.exports = {
         const jsonData = JSON.parse(data);
 
         let response = '';
-        jsonData['games'].forEach(
-            (game) => (response += `[${game.name}](${game.url}) - ${game.description}\n`),
-        );
+        jsonData['games'].forEach((game) => (response += `[${game.name}](${game.url}) - ${game.description}\n`));
         const embedMessage = {
             title: 'Minigame library',
             description: response,

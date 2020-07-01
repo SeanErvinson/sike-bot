@@ -14,9 +14,7 @@ module.exports = {
             message.channel.send(`Command \`${command.name}\` was reloaded!`);
         } catch (error) {
             console.log(error);
-            message.channel.send(
-                `There was an error while reloading \`${command.name}\`:\n\`${error.message}\`.`,
-            );
+            message.channel.send(`There was an error while reloading \`${command.name}\`:\n\`${error.message}\`.`);
         }
     },
 };

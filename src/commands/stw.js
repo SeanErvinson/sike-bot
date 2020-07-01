@@ -16,9 +16,7 @@ module.exports = {
         let response = prettyPrint.format(entries);
 
         message.channel.send(`Current entries\n${response}`);
-        message.channel.send(
-            `You can add by typing !et <value>. It will start in ${entryPeriod} seconds.`,
-        );
+        message.channel.send(`You can add by typing !et <value>. It will start in ${entryPeriod} seconds.`);
 
         const filter = (m) => m.content.startsWith('!et');
         const collector = message.channel.createMessageCollector(filter, { time: 15000 });
